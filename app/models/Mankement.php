@@ -22,12 +22,18 @@ class Mankement
         return $this->db->execute();
     }
 
-    public function getMankementen($instructeurId)
+    public function getMankementen()
     {
-        $this->db->query("SELECT *
-                          FROM Auto
-                          WHERE InstructeurId = :instructeurId");
-        $this->db->bind(':instructeurId', $instructeurId);
+        $this->db->query("SELECT Auto.Id
+                                ,Mankement.mankement
+                          FROM Instructeur
+                          INNER JOIN Auto
+                          ON Instructeur.Id = Auto.InstructeurId
+                          INNER JOIN Mankement
+                          ON Auto.Id = Mankement.AutoId
+                          WHERE Instructeur.Id = :Id");
+
+        $this->db->bind(':Id', 2);
 
         $result = $this->db->resultSet();
 

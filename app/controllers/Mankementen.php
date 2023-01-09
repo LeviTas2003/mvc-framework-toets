@@ -14,7 +14,13 @@ class Mankementen extends Controller
 
         // var_dump($result);
         $rows = '';
+        foreach ($result as $info) {
 
+            $rows .= "<tr>
+                        <td>$info->Id</td>
+                        <td>$info->mankement</td>
+                    </tr>";
+        }
 
         $data = [
             'title' => "Overzicht Mankementen",
@@ -23,27 +29,7 @@ class Mankementen extends Controller
         $this->view('mankementen/index', $data);
     }
 
-    function topicsLesson($AutoId)
-    {
-        $result = $this->mankementModel->getTopicsLesson($AutoId);
 
-        // var_dump($result);
-
-        $rows = "";
-        foreach ($result as $topic) {
-            $rows .= "<tr>      
-                        <td>$topic->Onderwerp</td>
-                      </tr>";
-        }
-
-
-        $data = [
-            'title' => 'Onderwerpen Les',
-            'rows'  => $rows,
-            'AutoId' => $AutoId
-        ];
-        $this->view('lessen/topicslesson', $data);
-    }
 
     function addMankement($AutoId = NULL)
     {
