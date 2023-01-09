@@ -10,7 +10,7 @@ class Mankementen extends Controller
 
     public function index()
     {
-        $result = $this->lesModel->getLessons();
+        $result = $this->mankementModel->getLessons();
 
         // var_dump($result);
         $rows = '';
@@ -32,9 +32,9 @@ class Mankementen extends Controller
         $this->view('lessen/index', $data);
     }
 
-    function topicsLesson($lesId)
+    function topicsLesson($AutoId)
     {
-        $result = $this->lesModel->getTopicsLesson($lesId);
+        $result = $this->mankementModel->getTopicsLesson($AutoId);
 
         // var_dump($result);
 
@@ -49,31 +49,31 @@ class Mankementen extends Controller
         $data = [
             'title' => 'Onderwerpen Les',
             'rows'  => $rows,
-            'lesId' => $lesId
+            'AutoId' => $AutoId
         ];
         $this->view('lessen/topicslesson', $data);
     }
 
-    function addTopic($lesId = NULL)
+    function addMankement($AutoId = NULL)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // var_dump($_POST);
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            $result = $this->lesModel->addTopic($_POST);
+            $result = $this->mankementModel->addTopic($_POST);
 
             if ($result) {
-                echo "<p>Het nieuwe onderwerp is succesvol toegevoegd</p>";
+                echo "<p>Het nieuwe mankement is succesvol toegevoegd</p>";
             } else {
-                echo "<p>Het nieuwe onderwerp is niet toegevoegd</p>";
+                echo "<p>Het nieuwe mankement is niet toegevoegd</p>";
             }
             header('Refresh:3; url=' . URLROOT . '/lessen/index');
         }
 
         $data = [
-            'title' => 'Onderwerp Toevoegen',
-            'lesId' => $lesId
+            'title' => 'Mankement Toevoegen',
+            'AutoId' => $AutoId
         ];
-        $this->view('lessen/addTopic', $data);
+        $this->view('mankementen/addMankement', $data);
     }
 }
