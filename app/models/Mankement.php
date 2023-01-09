@@ -38,7 +38,7 @@ class Mankement
                           INNER JOIN Mankement
                           ON Auto.Id = Mankement.AutoId
                           WHERE Instructeur.Id = :Id
-                          Order By Mankement.Datum ASC");
+                          Order By Mankement.Datum Desc");
 
         $this->db->bind(':Id', 2);
 
