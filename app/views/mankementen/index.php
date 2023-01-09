@@ -7,7 +7,7 @@
 <table border='1'>
     <thead>
         <th>Datum</th>
-        <th>Mankement</th>
+        <th>Mankement </th>
     </thead>
     <tbody>
         <?= $data['rows'] ?>
