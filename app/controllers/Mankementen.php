@@ -17,7 +17,7 @@ class Mankementen extends Controller
         foreach ($result as $info) {
 
             $rows .= "<tr>
-                        <td>$info->Id</td>
+                        <td>$info->Datum</td>
                         <td>$info->mankement</td>
                     </tr>";
         }
@@ -37,7 +37,7 @@ class Mankementen extends Controller
             // var_dump($_POST);
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            $result = $this->mankementModel->addTopic($_POST);
+            $result = $this->mankementModel->addMankement($_POST);
 
             if ($result) {
                 echo "<p>Het nieuwe mankement is succesvol toegevoegd</p>";
@@ -48,8 +48,8 @@ class Mankementen extends Controller
         }
 
         $data = [
-            'title' => 'Mankement Toevoegen',
-            'AutoId' => $AutoId
+            'title' => 'Invoegen Mankement',
+            'AutoId' => 2
         ];
         $this->view('mankementen/addMankement', $data);
     }
