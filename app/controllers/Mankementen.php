@@ -41,10 +41,9 @@ class Mankementen extends Controller
 
             if ($result) {
                 echo "<p>Het nieuwe mankement is succesvol toegevoegd</p>";
+                header('Refresh:3; url=' . URLROOT . '/mankementen/index');
             } else {
-                echo "<p>Het nieuwe mankement is niet toegevoegd</p>";
             }
-            header('Refresh:3; url=' . URLROOT . '/mankementen/index');
         }
 
         $data = [

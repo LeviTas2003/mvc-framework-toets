@@ -11,17 +11,22 @@ class Mankement
 
     public function addMankement($post)
     {
-        $sql = "INSERT INTO Mankement (AutoId
-                                      ,Mankement
-                                      ,Datum)
-                VALUES                (:autoId
-                                      ,:mankement
-                                      ,'2023-01-09')";
+        if (strlen($post['mankement']) <= 50) {
+            $sql = "INSERT INTO Mankement (AutoId
+                                          ,Mankement
+                                          ,Datum)
+                    VALUES                (:autoId
+                                          ,:mankement
+                                          ,'2023-01-09')";
 
-        $this->db->query($sql);
-        $this->db->bind(':autoId', 2, PDO::PARAM_INT);
-        $this->db->bind(':mankement', $post['mankement'], PDO::PARAM_STR);
-        return $this->db->execute();
+            $this->db->query($sql);
+            $this->db->bind(':autoId', 2, PDO::PARAM_INT);
+            $this->db->bind(':mankement', $post['mankement'], PDO::PARAM_STR);
+            return $this->db->execute();
+        } else {
+            echo "<p>Het nieuwe mankement is meer dan 50 tekens lang en is niet toegevoegd, probeer het opnieuw</p>";
+            header('Refresh:3; url=' . URLROOT . '/mankementen/addMankement');
+        }
     }
 
     public function getMankementen()
