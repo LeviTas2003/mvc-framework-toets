@@ -5,31 +5,22 @@ class Mankementen extends Controller
 
     public function __construct()
     {
-        $this->mankementModel = $this->model('Les');
+        $this->mankementModel = $this->model('Mankement');
     }
 
     public function index()
     {
-        $result = $this->mankementModel->getLessons();
+        $result = $this->mankementModel->getMankementen(2);
 
         // var_dump($result);
         $rows = '';
-        foreach ($result as $info) {
-            $d = new DateTimeImmutable($info->DatumTijd, new DateTimeZone('Europe/Amsterdam'));
-            $rows .= "<tr>
-                        <td>{$d->format('d-m-Y')}</td>
-                        <td>{$d->format('H:i')}</td>
-                        <td>$info->Naam</td>
-                        <td><a href=''><img src='" . URLROOT . "/img/b_help.png' alt='questionmark'></a></td>
-                        <td><a href='" . URLROOT . "/lessen/topicslesson/{$info->Id}'><img src='" . URLROOT . "/img/b_props.png' alt='topiclist'></a></td>
-                    </tr>";
-        }
+
 
         $data = [
-            'title' => "Overzicht Rijlessen",
+            'title' => "Overzicht Mankementen",
             'rows' => $rows
         ];
-        $this->view('lessen/index', $data);
+        $this->view('mankementen/index', $data);
     }
 
     function topicsLesson($AutoId)
@@ -67,7 +58,7 @@ class Mankementen extends Controller
             } else {
                 echo "<p>Het nieuwe mankement is niet toegevoegd</p>";
             }
-            header('Refresh:3; url=' . URLROOT . '/lessen/index');
+            header('Refresh:3; url=' . URLROOT . '/mankementen/index');
         }
 
         $data = [

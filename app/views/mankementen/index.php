@@ -2,13 +2,15 @@
 
 <table border='1'>
     <thead>
-        <th>Datum</th>
-        <th>Tijd</th>
-        <th>Naam Leerling</th>
-        <th>Lesinfo</th>
-        <th>Onderwerp</th>
+        <th>
+            Mankementen
+        </th>
     </thead>
     <tbody>
-        <?= $data['rows'] ?>
+        <?= $data['rows']; ?>
     </tbody>
 </table>
+<br>
+<a href="<?= URLROOT; ?>/mankementen/addMankement/<?= $data['lesId']; ?>">
+    <input type="button" value="Mankement toevoegen">
+</a>
